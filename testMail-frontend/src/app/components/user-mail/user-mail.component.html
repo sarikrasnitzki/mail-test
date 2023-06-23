@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <div class="padding">
+      <label>Email</label>
+    </div>
+    <div class="padding">
+      <input
+        type="text"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+      />
+    </div>
+    <div *ngIf="f['email'].dirty && f['email'].errors" class="invalid-feedback padding">
+      <div *ngIf="f['email'].errors['required']">Email is required</div>
+      <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+    </div>
+    <div class="padding">
+      <button
+        type="submit"
+        [disabled]="f['email'].invalid">
+        Send Email
+      </button>
+    </div>
+    <div class="padding" *ngIf="receivedDate">
+      the email received at {{ receivedDate | date : "short" }}
+    </div>
+  </div>
+
+</form>
